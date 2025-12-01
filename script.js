@@ -1,6 +1,9 @@
 let  pontosHumano = 0; 
 let pontosRobo = 0;
  
+let pedra = document.getElementById("pedra");
+let papel = document.getElementById("papel");
+let tesoura = document.getElementById("tesoura");
 function escolhacomputador(){
     const numero = Math.random();
     if (numero < 1/3 ){
@@ -43,14 +46,8 @@ function jogarrodada (humano,computador){
     
 }
 
-
-
-document.getElementById("botao").addEventListener("click", function(){
-
-
-
-
-    const jogador = document.getElementById("escolhajogador").value;
+function iniciar (jogador) {
+    const jogador = jogador
     const computador = escolhacomputador();
     const resultado = jogarrodada(jogador, computador);
 
@@ -70,5 +67,18 @@ document.getElementById("botao").addEventListener("click", function(){
         document.getElementById("pontoshumano").textContent = pontosHumano;
         document.getElementById("pontoscomputador").textContent = pontosRobo;
     }
+}
+
+pedra.addEventListener("click", function(){
+    iniciar ("pedra");
     
 })
+papel.addEventListener("click", function(){
+    iniciar ("papel");
+    
+})
+tesoura.addEventListener("click", function(){
+    iniciar ("tesoura");
+    
+})
+
