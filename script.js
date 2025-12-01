@@ -19,7 +19,8 @@ console.log(escolhacomputador());
 
 function jogarrodada (humano,computador){
     humano = humano.toLowerCase();
-    if (humano == computador){
+    if (humano == "pedra" || humano == "papel" || humano == "tesoura") {
+        if (humano == computador){
         return "empatou ambos escolheram "+ humano 
     }
 
@@ -30,11 +31,15 @@ function jogarrodada (humano,computador){
         humano == "tesoura" && computador == "papel"
     ){
         pontosHumano++
-        return  "vc venceu " + humano + " vence de " + computador;
+        return  "você venceu " + humano + " vence de " + computador;
     } else {
         pontosRobo++ 
-        return " vc perdeu " + computador + " ganha de " + humano;
+        return " você perdeu " + computador + " ganha de " + humano;
     }
+    } else {
+        return "inválido, escolha pedra papel ou tesoura! "
+    }
+
     
 }
 
