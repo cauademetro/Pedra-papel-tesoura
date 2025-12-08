@@ -1,6 +1,6 @@
 let  pontosHumano = 0; 
 let pontosRobo = 0;
- 
+ let escolhahumano="";
 let pedra = document.getElementById("pedra");
 let papel = document.getElementById("papel");
 let tesoura = document.getElementById("tesoura");
@@ -20,9 +20,20 @@ console.log(escolhacomputador());
 
 
 
-function jogarrodada (humano,computador){
+function jogar (evento){
+    function jogarrodada (humano,computador){
     humano = humano.toLowerCase();
     if (humano == "pedra" || humano == "papel" || humano == "tesoura") {
+        const clicou= evento.target;
+
+        if (clicou.id=="pedra") {
+            escolhahumano="pedra";
+        }else if (clicou.id=="papel") {
+            escolhahumano="papel";
+        }else if (clicou.id=="tesoura") {
+            escolhahumano="tesoura";
+        }
+
         if (humano == computador){
         return "empatou ambos escolheram "+ humano 
     }
@@ -38,104 +49,35 @@ function jogarrodada (humano,computador){
     } else {
         pontosRobo++ 
         return " você perdeu " + computador + " ganha de " + humano;
-    }
-    } else {
-        return "inválido, escolha pedra papel ou tesoura! "
+    }  
+
+} else {
+        return "inválido, escolha pedra papel ou tesoura! ";
     }
 
+    const jogador = escolhahumano;
+    const computador = escolhacomputador();
+    const resultado = jogarrodada(jogador, computador);
+
+if (pontosHumano ==5){
+        return "game over, você venceu";
+    } else if (pontosRobo ==5){
+        return "game over, você perdeu";
+    }
     
+    if ((pontosHumano>5) || (pontosRobo>5)){
+        return "atualiza a pagina";
+    }
+
+
+
+
+
+}
 }
 
-function iniciar (jogador) {
-    const jogador = jogador
-    const computador = escolhacomputador();
-    const resultado = jogarrodada(jogador, computador);
+const botao = document.querySelectorAll("button");
 
-
-    if (pontosHumano >= 3) {
-        document.getElementById("resultado").textContent = "voce ganhou. reiniciando a partida.";
-        document.getElementById("pontoshumano").textContent = 3;
-        pontosHumano = 0;
-        pontosRobo = 0;
-    } else if (pontosRobo >= 3) {
-        document.getElementById("resultado").textContent = "voce perdeu. reiniciando a partida";
-        document.getElementById("pontoscomputador").textContent = 3;
-        pontosHumano = 0;
-        pontosRobo = 0;
-    }   else {
-        document.getElementById("resultado").textContent = resultado;
-        document.getElementById("pontoshumano").textContent = pontosHumano;
-        document.getElementById("pontoscomputador").textContent = pontosRobo;
-    }
-}
-
-pedra.addEventListener("click", function(){
-    const jogador = "pedra";
-    const computador = escolhacomputador();
-    const resultado = jogarrodada(jogador, computador);
-
-
-    if (pontosHumano >= 3) {
-        document.getElementById("resultado").textContent = "voce ganhou. reiniciando a partida.";
-        document.getElementById("pontoshumano").textContent = 3;
-        pontosHumano = 0;
-        pontosRobo = 0;
-    } else if (pontosRobo >= 3) {
-        document.getElementById("resultado").textContent = "voce perdeu. reiniciando a partida";
-        document.getElementById("pontoscomputador").textContent = 3;
-        pontosHumano = 0;
-        pontosRobo = 0;
-    }   else {
-        document.getElementById("resultado").textContent = resultado;
-        document.getElementById("pontoshumano").textContent = pontosHumano;
-        document.getElementById("pontoscomputador").textContent = pontosRobo;
-    }
-    
+botao.forEach((button) => {
+    button.addEventListener ("click", jogar);
 })
-papel.addEventListener("click", function(){
-    const jogador = "papel";
-    const computador = escolhacomputador();
-    const resultado = jogarrodada(jogador, computador);
-
-
-    if (pontosHumano >= 3) {
-        document.getElementById("resultado").textContent = "voce ganhou. reiniciando a partida.";
-        document.getElementById("pontoshumano").textContent = 3;
-        pontosHumano = 0;
-        pontosRobo = 0;
-    } else if (pontosRobo >= 3) {
-        document.getElementById("resultado").textContent = "voce perdeu. reiniciando a partida";
-        document.getElementById("pontoscomputador").textContent = 3;
-        pontosHumano = 0;
-        pontosRobo = 0;
-    }   else {
-        document.getElementById("resultado").textContent = resultado;
-        document.getElementById("pontoshumano").textContent = pontosHumano;
-        document.getElementById("pontoscomputador").textContent = pontosRobo;
-    }
-    
-})
-tesoura.addEventListener("click", function(){
-    const jogador = "tesoura";
-    const computador = escolhacomputador();
-    const resultado = jogarrodada(jogador, computador);
-
-
-    if (pontosHumano >= 3) {
-        document.getElementById("resultado").textContent = "voce ganhou. reiniciando a partida.";
-        document.getElementById("pontoshumano").textContent = 3;
-        pontosHumano = 0;
-        pontosRobo = 0;
-    } else if (pontosRobo >= 3) {
-        document.getElementById("resultado").textContent = "voce perdeu. reiniciando a partida";
-        document.getElementById("pontoscomputador").textContent = 3;
-        pontosHumano = 0;
-        pontosRobo = 0;
-    }   else {
-        document.getElementById("resultado").textContent = resultado;
-        document.getElementById("pontoshumano").textContent = pontosHumano;
-        document.getElementById("pontoscomputador").textContent = pontosRobo;
-    }
-    
-})
-
