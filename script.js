@@ -46,6 +46,8 @@ function jogar(evento) {
     const computador = escolhacomputador();
 
     const resultado = jogarrodada(escolhahumano, computador);
+    document.getElementById("resultado").textContent = resultado;
+
 
     document.getElementById("pontoshumano").textContent = pontosHumano;
     document.getElementById("pontoscomputador").textContent = pontosRobo;
