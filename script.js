@@ -47,19 +47,9 @@ function jogar(evento) {
 
     const resultado = jogarrodada(escolhahumano, computador);
 
-    document.getElementById("resultado").textContent =
-        "Você: " + escolhahumano + " | Computador: " + computador + " → " + resultado;
-
     document.getElementById("pontoshumano").textContent = pontosHumano;
     document.getElementById("pontoscomputador").textContent = pontosRobo;
 
-    if (pontosHumano === 5) {
-        document.getElementById("resultado").textContent = "GAME OVER — Você venceu!";
-    }
-
-    if (pontosRobo === 5) {
-        document.getElementById("resultado").textContent = "GAME OVER — Você perdeu!";
-    }
 }
 
 const botoes = document.querySelectorAll("button");
